@@ -69,13 +69,7 @@ vet:
 
 lint:
 	@echo "Running linter..."
-	@if command -v golangci-lint > /dev/null; then \
-		golangci-lint run ./...; \
-		echo "Lint checks passed"; \
-	else \
-		echo "golangci-lint not installed. Install with:"; \
-		echo "  go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest"; \
-	fi
+	golangci-lint run ./...; 
 
 tidy:
 	@echo "Tidying go.mod..."

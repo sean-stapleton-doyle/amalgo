@@ -296,15 +296,24 @@ func TestWriteOutput(t *testing.T) {
 		content := []byte("test content")
 		err := writeOutput(content, "-", 1)
 
-		w.Close()
 		os.Stdout = oldStdout
 
 		if err != nil {
 			t.Fatalf("unexpected error: %v", err)
 		}
 
+		err = w.Close()
+
+		if err != nil {
+			t.Fatalf("Failed to close file: %v", err)
+		}
+
 		var buf bytes.Buffer
-		buf.ReadFrom(r)
+		_, err = buf.ReadFrom(r)
+
+		if err != nil {
+			t.Fatalf("Failed to read from buffer: %v", err)
+		}
 
 		if !bytes.Equal(buf.Bytes(), content) {
 			t.Errorf("stdout content mismatch")

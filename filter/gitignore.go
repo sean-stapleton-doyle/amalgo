@@ -71,7 +71,12 @@ func loadGitignoreFile(path, baseDir string) ([]gitignore.Pattern, error) {
 		}
 		return nil, err
 	}
-	defer file.Close()
+
+	defer func() {
+		if closeErr := file.Close(); closeErr != nil && err == nil {
+			err = closeErr
+		}
+	}()
 
 	var patterns []gitignore.Pattern
 	scanner := bufio.NewScanner(file)
