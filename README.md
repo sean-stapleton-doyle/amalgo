@@ -1,4 +1,5 @@
 # amalgo
+[![Build](https://github.com/sean-stapleton-doyle/amalgo/actions/workflows/go.yml/badge.svg)](https://github.com/sean-stapleton-doyle/amalgo/actions/workflows/go.yml) 
 
 `amalgo` is a command-line tool that recursively scans a directory for files with specified extensions and concatenates them into a single, amalgamated output file. It allows for filters files using `.gitignore` rules, custom patterns, and directory exclusions.
 
